@@ -7,6 +7,54 @@
     <meta name="description" content="Kvortex builds high-performance business websites from ₹799, custom analytics dashboards from ₹1999, and automated digital workflows.">
     <meta name="keywords" content="Kvortex, Business Websites, Custom Dashboards, Invoice Generator, GRN Generator, Quotation Generator, WhatsApp Business Automation">
 
+    <!-- SEO & PWA Integrations -->
+<link rel="canonical" href="https://kvortex.tech/" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#4f46e5" />
+
+<!-- Google Rich Snippets & Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://kvortex.tech/#organization",
+      "name": "Kvortex Automations & Digital",
+      "url": "https://kvortex.tech",
+      "telephone": "+919480931248",
+      "email": "kvortex.tech@gmail.com",
+      "priceRange": "₹799 - ₹1999+",
+      "image": "https://kvortex.tech/og-image.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "openingHours": "Mo,Tu,We,Th,Fr,Sa 09:00-21:00"
+    },
+    {
+      "@type": "Service",
+      "name": "Custom Business Website Design",
+      "provider": { "@id": "https://kvortex.tech/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "price": "799.00",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Custom Analytics Dashboard",
+      "provider": { "@id": "https://kvortex.tech/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "price": "1999.00",
+        "priceCurrency": "INR"
+      }
+    }
+  ]
+}
+</script>
 
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Kvortex | Modern Websites, Dashboards & Business Automation">
@@ -876,7 +924,7 @@
                     </div>
                     <div>
                         <h3 class="font-display font-bold text-2xl text-white">Kvortex Automations</h3>
-                        <p class="text-sm font-bold text-brand-400 mt-1">kvotex.tech@gmail.com</p>
+                        <p class="text-sm font-bold text-brand-400 mt-1">kvortex.tech@gmail.com</p>
                         <p class="text-sm font-bold text-emerald-400 mt-1">WhatsApp: +91 9480931248</p>
                     </div>
                     <div class="flex flex-col sm:flex-row justify-center gap-4 pt-2">
@@ -934,7 +982,7 @@
             </div>
             <div>
                 <h4 class="font-bold text-white uppercase text-[10px] tracking-widest mb-3">Direct Contact</h4>
-                <p class="text-slate-200 font-bold">kvotex.tech@gmail.com</p>
+                <p class="text-slate-200 font-bold">kvortex.tech@gmail.com</p>
                 <p class="text-emerald-400 font-bold mt-1">WhatsApp: +91 9480931248</p>
             </div>
         </div>
@@ -1098,7 +1146,7 @@
             }
         }
 
-        // MODAL & MAILTO DISPATCH TO kvotex.tech@gmail.com
+        // MODAL & MAILTO DISPATCH TO kvortex.tech@gmail.com
         function openModal(type) {
             const modal = document.getElementById('kvora-modal');
             const content = document.getElementById('modal-content');
@@ -1109,7 +1157,7 @@
 
             content.innerHTML = `
                 <h3 class="font-display font-bold text-xl text-white">Send Requirements to Kvortex</h3>
-                <p class="text-xs text-slate-400">Fill your requirement details below to send a mail to <span class="font-bold text-white">kvotex.tech@gmail.com</span>.</p>
+                <p class="text-xs text-slate-400">Fill your requirement details below to send a mail to <span class="font-bold text-white">kvortex.tech@gmail.com</span>.</p>
                 <form onsubmit="dispatchRequirementMail(event)" class="space-y-3 pt-2">
                     <input type="text" id="req-name" required placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500">
                     <input type="text" id="req-company" required placeholder="Business / Restaurant / Brand Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500">
@@ -1155,7 +1203,7 @@
                 `Regards,\n${name}`
             );
 
-            window.location.href = `mailto:kvotex.tech@gmail.com?subject=${subject}&body=${body}`;
+            window.location.href = `mailto:kvortex.tech@gmail.com?subject=${subject}&body=${body}`;
             showToast('Opening Mail Client to send requirement...', 'success');
             closeModal();
         }
