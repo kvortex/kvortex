@@ -1,0 +1,42 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://kvortex.tech/#organization",
+      "name": "Kvortex Automations & Digital",
+      "url": "https://kvortex.tech",
+      "telephone": "+919480931248",
+      "email": "kvotex.tech@gmail.com",
+      "priceRange": "₹799 - ₹1999+",
+      "image": "https://kvortex.tech/og-image.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "openingHours": "Mo,Tu,We,Th,Fr,Sa 09:00-21:00"
+    },
+    {
+      "@type": "Service",
+      "name": "Custom Business Website Design",
+      "provider": { "@id": "https://kvortex.tech/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "price": "799.00",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Custom Analytics Dashboard",
+      "provider": { "@id": "https://kvortex.tech/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "price": "1999.00",
+        "priceCurrency": "INR"
+      }
+    }
+  ]
+}
+</script>
