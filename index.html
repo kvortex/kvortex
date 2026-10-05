@@ -1,0 +1,1193 @@
+<!DOCTYPE html> 
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kvortex | Custom Business Websites from ₹799, Dashboards & Automation</title>
+    <meta name="description" content="Kvortex builds high-performance business websites from ₹799, custom analytics dashboards from ₹1999, and automated digital workflows.">
+    <meta name="keywords" content="Kvortex, Business Websites, Custom Dashboards, Invoice Generator, GRN Generator, Quotation Generator, WhatsApp Business Automation">
+    
+    <!-- Google Site Verification Tag -->
+    <meta name="google-site-verification" content="ug-5LYucIXl5wijzopNS0VE6-MJsj_82fHtrfjtBfu4" />
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Kvortex | Modern Websites, Dashboards & Business Automation">
+    <meta property="og:description" content="Your Business Deserves More Than Just a WhatsApp Number. Websites from ₹799, Dashboards from ₹1999.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- jsPDF & html2canvas for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; }
+        h1, h2, h3, h4, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        .glass-card { 
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        
+        .glass-card-hover { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .glass-card-hover:hover { 
+            transform: translateY(-4px); 
+            border-color: rgba(99, 102, 241, 0.4); 
+            box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.25); 
+        }
+
+        .hero-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(79, 70, 229, 0.18) 0%, rgba(11, 15, 25, 0) 70%);
+        }
+
+        /* Floating WhatsApp pulse animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .whatsapp-pulse {
+            animation: pulse-ring 2s infinite;
+        }
+
+        /* Print Styles for A4 Document Rendering */
+        @media print {
+            body * { visibility: hidden; }
+            .printable-active, .printable-active * { visibility: visible; }
+            .printable-active { position: absolute; left: 0; top: 0; width: 100%; color: #000 !important; }
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 antialiased flex flex-col min-h-screen">
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/919480931248?text=Hi%20Kvortex!%20I%20am%20interested%20in%20building%20a%20website/dashboard." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Chat on WhatsApp"
+       class="whatsapp-pulse fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl transition cursor-pointer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- STICKY HEADER -->
+    <header class="sticky top-0 z-40 bg-[#0b0f19]/80 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" onclick="navigateTo('home')" class="flex items-center space-x-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-display font-black text-2xl shadow-lg shadow-brand-500/30 group-hover:scale-105 transition">K</div>
+                <div>
+                    <span class="font-display font-black text-2xl tracking-tight text-white block leading-none">Kvortex</span>
+                    <span class="text-[10px] font-bold text-brand-500 tracking-widest uppercase block mt-1">AUTOMATIONS & DIGITAL</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
+                <a href="#home" id="nav-home" onclick="navigateTo('home')" class="nav-btn text-brand-500 transition hover:text-white">Home</a>
+                <a href="#websites" id="nav-websites" onclick="navigateTo('websites')" class="nav-btn hover:text-brand-500 transition">Websites & Portfolio</a>
+                <a href="#dashboards" id="nav-dashboards" onclick="navigateTo('dashboards')" class="nav-btn hover:text-brand-500 transition">Dashboards</a>
+                <a href="#automations" id="nav-automations" onclick="navigateTo('automations')" class="nav-btn hover:text-brand-500 transition">Automation</a>
+                <a href="#tools" id="nav-tools" onclick="navigateTo('tools')" class="nav-btn hover:text-brand-500 transition">Free Tools</a>
+                <a href="#contact" id="nav-contact" onclick="navigateTo('contact')" class="nav-btn hover:text-brand-500 transition">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://wa.me/919480931248?text=Hi%20Kvortex!%20I'd%20like%20to%20discuss%20a%20project." 
+                   target="_blank" 
+                   class="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs hover:bg-emerald-500 hover:text-white transition flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>9480931248</span>
+                </a>
+                <button onclick="openModal('project-inquiry')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-brand-600/30 transition cursor-pointer">
+                    Start a Project
+                </button>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white"><i class="fa-solid fa-bars text-2xl"></i></button>
+        </div>
+    </header>
+
+    <!-- MOBILE DRAWER NAVIGATION -->
+    <div id="mobile-drawer" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md transform -translate-x-full transition-transform md:hidden">
+        <div class="bg-[#0b0f19] w-4/5 max-w-sm h-full p-6 flex flex-col justify-between border-r border-white/10">
+            <div>
+                <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-xl bg-brand-600 text-white font-bold flex items-center justify-center">K</div>
+                        <span class="font-display font-black text-xl text-white">Kvortex</span>
+                    </div>
+                    <button id="mobile-close-btn" class="p-2 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+                <nav class="py-6 space-y-3 font-semibold text-slate-300">
+                    <a href="#home" onclick="navigateTo('home');" class="block px-4 py-2.5 rounded-xl hover:bg-white/5">Home</a>
+                    <a href="#websites" onclick="navigateTo('websites');" class="block px-4 py-2.5 rounded-xl hover:bg-white/5">Websites & Portfolio</a>
+                    <a href="#dashboards" onclick="navigateTo('dashboards');" class="block px-4 py-2.5 rounded-xl hover:bg-white/5">Dashboards</a>
+                    <a href="#automations" onclick="navigateTo('automations');" class="block px-4 py-2.5 rounded-xl hover:bg-white/5">Automation</a>
+                    <a href="#tools" onclick="navigateTo('tools');" class="block px-4 py-2.5 rounded-xl hover:bg-white/5">Free Tools</a>
+                    <a href="#contact" onclick="navigateTo('contact');" class="block px-4 py-2.5 rounded-xl hover:bg-white/5">Contact</a>
+                </nav>
+            </div>
+            <div class="space-y-3">
+                <a href="https://wa.me/919480931248" target="_blank" class="w-full py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-sm text-center flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp Support
+                </a>
+                <button onclick="openModal('project-inquiry')" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold text-sm text-center">Start a Project</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT VIEWS -->
+    <main class="flex-1">
+
+        <!-- ================= HOME TAB ================= -->
+        <section id="tab-home" class="tab-content">
+            
+            <!-- HERO SECTION -->
+            <div class="relative hero-glow py-20 md:py-28 border-b border-white/10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        
+                        <!-- Left Hero Column -->
+                        <div class="lg:col-span-7 space-y-6 text-left">
+                            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-bold uppercase tracking-wider">
+                                <span class="flex h-2 w-2 rounded-full bg-brand-500 animate-ping"></span>
+                                <span>🚀 HIGH-IMPACT WEBSITES & DASHBOARDS</span>
+                            </div>
+                            
+                            <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight leading-none">
+                                Your Business Deserves More Than Just a <span class="bg-gradient-to-r from-brand-400 via-indigo-300 to-indigo-500 bg-clip-text text-transparent">WhatsApp Link.</span>
+                            </h1>
+                            
+                            <p class="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                                Kvortex crafts ultra-fast, professional business websites and real-time operational dashboards tailored to upscale your brand image and automate tedious work.
+                            </p>
+
+                            <!-- PRICING BADGES -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2 max-w-xl">
+                                <div class="glass-card p-4 rounded-2xl flex items-center space-x-4 border-l-4 border-l-brand-500">
+                                    <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xl"><i class="fa-solid fa-globe"></i></div>
+                                    <div>
+                                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Custom Websites</p>
+                                        <p class="text-xl font-black text-white">Starting at <span class="text-brand-400">₹799</span></p>
+                                    </div>
+                                </div>
+                                <div class="glass-card p-4 rounded-2xl flex items-center space-x-4 border-l-4 border-l-emerald-500">
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl"><i class="fa-solid fa-chart-pie"></i></div>
+                                    <div>
+                                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Custom Dashboards</p>
+                                        <p class="text-xl font-black text-white">Starting at <span class="text-emerald-400">₹1999</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-4 pt-2">
+                                <button onclick="navigateTo('websites')" class="px-7 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-brand-600/30 transition flex items-center space-x-2 cursor-pointer">
+                                    <span>Explore Web Builds</span>
+                                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                                <a href="https://wa.me/919480931248?text=Hi%20Kvortex!%20I%20want%20to%20order%20a%20website/dashboard." 
+                                   target="_blank" 
+                                   class="px-6 py-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500 hover:text-white text-emerald-400 font-bold text-sm transition flex items-center space-x-2">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    <span>Chat on WhatsApp</span>
+                                </a>
+                            </div>
+
+                            <div class="pt-6 flex flex-wrap items-center gap-6 text-xs text-slate-400 font-semibold border-t border-white/10">
+                                <span class="flex items-center"><i class="fa-solid fa-shield-halved text-emerald-400 mr-2"></i> 100% Custom Design</span>
+                                <span class="flex items-center"><i class="fa-solid fa-bolt text-amber-400 mr-2"></i> Fast 24-48h Delivery</span>
+                                <span class="flex items-center"><i class="fa-solid fa-infinity text-brand-400 mr-2"></i> Zero Hidden Fees</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Column Visual Card -->
+                        <div class="lg:col-span-5">
+                            <div class="glass-card p-6 rounded-3xl space-y-4 text-left relative overflow-hidden shadow-2xl border border-white/10">
+                                <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                                    <span class="text-xs font-bold text-brand-400 uppercase tracking-widest">Live System Engine</span>
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-extrabold">OPERATIONAL</span>
+                                </div>
+                                <div class="bg-slate-950/80 rounded-2xl p-5 text-white space-y-4 font-sans border border-white/5">
+                                    <div class="flex items-center justify-between text-xs border-b border-white/10 pb-2">
+                                        <span class="font-bold text-slate-200">Kvortex Business Intelligence</span>
+                                        <span class="text-emerald-400 text-[10px] font-mono">Sync Active ●</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-left">
+                                        <div class="bg-slate-900/90 p-3.5 rounded-xl border border-white/10">
+                                            <p class="text-[10px] text-slate-400 uppercase font-semibold">Today's Revenue</p>
+                                            <p class="text-xl font-black text-white mt-0.5">₹18,450</p>
+                                        </div>
+                                        <div class="bg-slate-900/90 p-3.5 rounded-xl border border-white/10">
+                                            <p class="text-[10px] text-slate-400 uppercase font-semibold">Dispatched PDFs</p>
+                                            <p class="text-xl font-black text-emerald-400 mt-0.5">42 Invoices</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
+                                        <span class="font-medium text-slate-300"><i class="fa-solid fa-globe text-brand-400 mr-2"></i>Web Deployment</span>
+                                        <span class="text-emerald-400 font-bold">100% Uptime</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
+                                        <span class="font-medium text-slate-300"><i class="fa-solid fa-bolt text-indigo-400 mr-2"></i>Automated Dispatch</span>
+                                        <span class="text-brand-400 font-bold">Active</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- WORK & PORTFOLIO SHOWCASE -->
+            <div class="py-20 bg-[#080b12] border-b border-white/10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+                        <div class="space-y-2">
+                            <span class="text-xs font-extrabold uppercase tracking-widest text-brand-400">Deployed Solutions</span>
+                            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white">Featured Live Projects</h2>
+                            <p class="text-xs text-slate-400">Explore real client implementations engineered for performance.</p>
+                        </div>
+                        <button onclick="navigateTo('websites')" class="text-xs font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1.5 transition">
+                            <span>Browse All Portfolio</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- Chumbak House -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between relative overflow-hidden group">
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">Live Client Site</span>
+                                    <i class="fa-solid fa-house-laptop text-slate-400 text-lg group-hover:text-brand-400 transition"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-white">Chumbak House</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">Interactive interior housing showcase and dynamic ideas presentation portal engineered for luxury customer engagement.</p>
+                            </div>
+                            <div class="pt-6 mt-6 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-mono text-slate-400">Housing & Interiors</span>
+                                <a href="https://kvora-tools.github.io/chumbak-house/#ideas" target="_blank" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition flex items-center gap-1.5">
+                                    <span>Visit Site</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Advika Digital -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between relative overflow-hidden group">
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">Live Client Site</span>
+                                    <i class="fa-solid fa-gem text-slate-400 text-lg group-hover:text-brand-400 transition"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-white">Advika Digital</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">Modern web presence built for high-performance brand storytelling, optimized for mobile responsiveness and lead generation.</p>
+                            </div>
+                            <div class="pt-6 mt-6 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-mono text-slate-400">Digital Brand</span>
+                                <a href="https://kvora-tools.github.io/advika/" target="_blank" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition flex items-center gap-1.5">
+                                    <span>Visit Site</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- The Spiced Table -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between relative overflow-hidden group">
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold">Restaurant Showcase</span>
+                                    <i class="fa-solid fa-utensils text-amber-400 text-lg"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-white">The Spiced Table</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">Fine dining digital menu concept featuring table reservation modules, instant dish previews, and online ordering routing.</p>
+                            </div>
+                            <div class="pt-6 mt-6 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-mono text-slate-400">Hospitality Portal</span>
+                                <a href="https://kvora-tools.github.io/Spiced-table/" target="_blank" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition flex items-center gap-1.5">
+                                    <span>Demo Preview</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE ESTIMATOR CALCULATOR -->
+            <div class="py-20 border-b border-white/10">
+                <div class="max-w-4xl mx-auto px-4 text-center space-y-8">
+                    <div class="space-y-2">
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-brand-400">Instant Estimate</span>
+                        <h2 class="font-display font-black text-3xl sm:text-4xl text-white">Calculate Your Project Cost</h2>
+                        <p class="text-xs text-slate-400">Select the modular components you need for your business:</p>
+                    </div>
+
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl text-left space-y-6 shadow-2xl border border-white/10">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="p-4 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-between cursor-pointer hover:border-brand-500/50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" id="calc-website" checked onchange="updateEstimatorTotal()" class="w-4 h-4 text-brand-600 rounded bg-slate-900 border-white/20 focus:ring-brand-500">
+                                    <div>
+                                        <p class="font-bold text-xs text-white">Custom Business Website</p>
+                                        <p class="text-[10px] text-slate-400">Mobile ready & SEO optimized</p>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-xs text-brand-400">₹799</span>
+                            </label>
+
+                            <label class="p-4 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-between cursor-pointer hover:border-brand-500/50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" id="calc-dashboard" onchange="updateEstimatorTotal()" class="w-4 h-4 text-brand-600 rounded bg-slate-900 border-white/20 focus:ring-brand-500">
+                                    <div>
+                                        <p class="font-bold text-xs text-white">Operational Dashboard</p>
+                                        <p class="text-[10px] text-slate-400">Sales, inventory & metrics</p>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-xs text-emerald-400">+₹1999</span>
+                            </label>
+
+                            <label class="p-4 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-between cursor-pointer hover:border-brand-500/50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" id="calc-domain" onchange="updateEstimatorTotal()" class="w-4 h-4 text-brand-600 rounded bg-slate-900 border-white/20 focus:ring-brand-500">
+                                    <div>
+                                        <p class="font-bold text-xs text-white">Custom Domain & SSL</p>
+                                        <p class="text-[10px] text-slate-400">.com / .in domain setup</p>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-xs text-indigo-400">+₹499</span>
+                            </label>
+
+                            <label class="p-4 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-between cursor-pointer hover:border-brand-500/50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" id="calc-whatsapp" onchange="updateEstimatorTotal()" class="w-4 h-4 text-brand-600 rounded bg-slate-900 border-white/20 focus:ring-brand-500">
+                                    <div>
+                                        <p class="font-bold text-xs text-white">WhatsApp Order Dispatch</p>
+                                        <p class="text-[10px] text-slate-400">Direct alert routing flow</p>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-xs text-emerald-400">+₹299</span>
+                            </label>
+                        </div>
+
+                        <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <p class="text-xs text-slate-400 font-semibold">Total Estimated Investment:</p>
+                                <p class="font-display font-black text-4xl text-white" id="estimator-grand-total">₹799</p>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto">
+                                <a href="https://wa.me/919480931248?text=Hi%20Kvortex!%20I'd%20like%20to%20order%20the%20custom%20setup%20estimated%20at%20" 
+                                   id="estimator-wa-btn" 
+                                   target="_blank" 
+                                   class="flex-1 sm:flex-initial px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs transition flex items-center justify-center gap-2">
+                                    <i class="fa-brands fa-whatsapp text-base"></i> Order via WhatsApp
+                                </a>
+                                <button onclick="openModal('project-inquiry')" class="flex-1 sm:flex-initial px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition">
+                                    Send Requirements
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CORE SERVICES OVERVIEW -->
+            <div class="py-20 bg-[#080b12]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    <div class="text-center max-w-2xl mx-auto space-y-2">
+                        <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-400">Our Services</h2>
+                        <h3 class="font-display font-black text-3xl text-white">Engineered For Growth</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                        <div class="glass-card glass-card-hover p-8 rounded-3xl flex flex-col justify-between border-t-2 border-t-brand-500">
+                            <div class="space-y-4">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-globe"></i></div>
+                                <h4 class="font-display font-bold text-xl text-white">Custom Websites</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">High-converting digital storefronts and landing pages that look stunning across all mobile and desktop devices.</p>
+                                <p class="text-xs font-extrabold text-brand-400">Starting from ₹799</p>
+                            </div>
+                            <button onclick="navigateTo('websites')" class="mt-8 py-3 w-full rounded-xl bg-white/5 hover:bg-brand-600 hover:text-white text-slate-300 text-xs font-bold transition border border-white/10">Explore Websites →</button>
+                        </div>
+
+                        <div class="glass-card glass-card-hover p-8 rounded-3xl flex flex-col justify-between border-t-2 border-t-emerald-500">
+                            <div class="space-y-4">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-chart-pie"></i></div>
+                                <h4 class="font-display font-bold text-xl text-white">Business Dashboards</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">Centralize messy inventory spreadsheets, daily order metrics, and sales records into single-screen analytics dashboards.</p>
+                                <p class="text-xs font-extrabold text-emerald-400">Starting from ₹1999</p>
+                            </div>
+                            <button onclick="navigateTo('dashboards')" class="mt-8 py-3 w-full rounded-xl bg-white/5 hover:bg-emerald-600 hover:text-white text-slate-300 text-xs font-bold transition border border-white/10">Explore Dashboards →</button>
+                        </div>
+
+                        <div class="glass-card glass-card-hover p-8 rounded-3xl flex flex-col justify-between border-t-2 border-t-indigo-500">
+                            <div class="space-y-4">
+                                <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-bolt"></i></div>
+                                <h4 class="font-display font-bold text-xl text-white">Workflow Automation</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">Automate automated invoice generation, Goods Receipt Notes (GRN), customer WhatsApp notifications, and order logs.</p>
+                                <p class="text-xs font-extrabold text-indigo-400">Scalable & Practical</p>
+                            </div>
+                            <button onclick="navigateTo('automations')" class="mt-8 py-3 w-full rounded-xl bg-white/5 hover:bg-indigo-600 hover:text-white text-slate-300 text-xs font-bold transition border border-white/10">Explore Automations →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- WEBSITES & PORTFOLIO SHOWCASE TAB -->
+        <section id="tab-websites" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-bold uppercase tracking-wider">Starting at ₹799</span>
+                    <h2 class="font-display font-black text-3xl sm:text-5xl text-white">Websites Built For Impact</h2>
+                    <p class="text-slate-400 text-sm">Custom code architectures designed for blazing speed, search visibility, and maximum conversions.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="border-b border-white/10 pb-4">
+                        <h3 class="font-display font-extrabold text-2xl text-white">Live Client Sites & Demos</h3>
+                        <p class="text-xs text-slate-400">Click any card below to launch the live site in a new tab.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- Chumbak House -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">Live Project</span>
+                                    <i class="fa-solid fa-house text-brand-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-lg text-white">Chumbak House</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">Housing and interior ideas presentation landing page featuring interactive gallery layout sections.</p>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-semibold text-slate-400">Housing & Interior</span>
+                                <a href="https://kvora-tools.github.io/chumbak-house/#ideas" target="_blank" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition">View Website &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Advika -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">Live Project</span>
+                                    <i class="fa-solid fa-crown text-indigo-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-lg text-white">Advika Digital</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">Modern web presence built for Advika brand storytelling and client engagement.</p>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-semibold text-slate-400">Brand Showcase</span>
+                                <a href="https://kvora-tools.github.io/advika/" target="_blank" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition">View Website &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- The Spiced Table -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold">Restaurant Demo</span>
+                                    <i class="fa-solid fa-utensils text-amber-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-lg text-white">The Spiced Table</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">Fine dining showcase featuring digital menu, table reservation modal, and chef specials.</p>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-semibold text-slate-400">Boutique Dining</span>
+                                <a href="https://kvora-tools.github.io/Spiced-table/" target="_blank" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition">View Demo &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Green Culture -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">Microgreens</span>
+                                    <i class="fa-solid fa-seedling text-emerald-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-lg text-white">Green Culture</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">Freshness grown naturally. Organic microgreens store and ordering catalog.</p>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-semibold text-slate-400">Organic Farming</span>
+                                <a href="https://kvora-tools.github.io/Green-culture-/" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs transition">View Website &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Farm Links -->
+                        <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">Exotics Supplier</span>
+                                    <i class="fa-solid fa-truck-ramp-box text-emerald-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-display font-bold text-lg text-white">Farm Links</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">Exotic Vegetables. Freshly Sourced. Reliably Supplied for commercial clients.</p>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-[10px] font-semibold text-slate-400">B2B Supply</span>
+                                <a href="https://kvora-tools.github.io/Farm-links/" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs transition">View Website &rarr;</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- DASHBOARDS TAB -->
+        <section id="tab-dashboards" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">Starting at ₹1999</span>
+                    <h2 class="font-display font-black text-3xl sm:text-5xl text-white">Tailored Business Dashboards</h2>
+                    <p class="text-slate-400 text-sm">Consolidate sales records, inventory counts, and incoming orders into a unified operational command center.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl space-y-6 border border-white/10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/10 pb-6">
+                        <div>
+                            <h3 class="font-display font-bold text-2xl text-white">Kvortex Command Dashboard</h3>
+                            <p class="text-xs text-slate-400">Interactive live mockup view</p>
+                        </div>
+                        <a href="https://wa.me/919480931248?text=Hi%20Kvortex!%20I%20want%20to%20order%20a%20custom%20Dashboard%20(₹1999)." 
+                           target="_blank" 
+                           class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs transition flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i> Order Dashboard (₹1999)
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-left">
+                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-white/10">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Sales Revenue</span>
+                            <p class="text-2xl font-black text-white mt-1">₹42,800</p>
+                            <span class="text-[10px] text-emerald-400 font-semibold">+12% vs last week</span>
+                        </div>
+                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-white/10">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Orders Today</span>
+                            <p class="text-2xl font-black text-white mt-1">114 Orders</p>
+                            <span class="text-[10px] text-brand-400 font-semibold">100% Dispatched</span>
+                        </div>
+                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-white/10">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Low Stock Items</span>
+                            <p class="text-2xl font-black text-rose-400 mt-1">3 Items</p>
+                            <span class="text-[10px] text-rose-400 font-semibold">Needs Reorder</span>
+                        </div>
+                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-white/10">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Pending Invoices</span>
+                            <p class="text-2xl font-black text-amber-400 mt-1">₹8,500</p>
+                            <span class="text-[10px] text-amber-400 font-semibold">4 Due Today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- AUTOMATION TAB -->
+        <section id="tab-automations" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div>
+                    <h2 class="font-display font-black text-3xl sm:text-4xl text-white">Smart Workflow Automations</h2>
+                    <p class="text-sm text-slate-400 mt-1">Eliminate manual data entry and document dispatching with automated pipelines.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-3xl space-y-3">
+                        <div class="w-11 h-11 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-file-invoice"></i></div>
+                        <h3 class="font-display font-bold text-lg text-white">Automated Invoicing</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">Auto-generate PDF invoices and immediately dispatch them to clients over WhatsApp or Email.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl space-y-3">
+                        <div class="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-boxes-packing"></i></div>
+                        <h3 class="font-display font-bold text-lg text-white">GRN Stock Logging</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">Log Goods Receipt Notes (GRN), verify vendor batch codes, and update inventory counts automatically.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl space-y-3">
+                        <div class="w-11 h-11 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg"><i class="fa-brands fa-whatsapp"></i></div>
+                        <h3 class="font-display font-bold text-lg text-white">WhatsApp Alert Routing</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">Send real-time order receipts, booking confirmations, and delivery updates directly on WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FREE BUSINESS TOOLS TAB -->
+        <section id="tab-tools" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase text-brand-400 tracking-wider">Free Utility Suite</span>
+                        <h2 class="font-display font-black text-3xl text-white mt-1">Free Document Generators</h2>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="switchSubTool('invoice')" id="btn-subtool-invoice" class="sub-tool-btn px-4 py-2.5 rounded-xl bg-brand-600 text-white font-bold text-xs cursor-pointer transition">Invoice Generator</button>
+                        <button onclick="switchSubTool('grn')" id="btn-subtool-grn" class="sub-tool-btn px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 font-medium text-xs cursor-pointer transition">GRN Generator</button>
+                        <button onclick="switchSubTool('quote')" id="btn-subtool-quote" class="sub-tool-btn px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 font-medium text-xs cursor-pointer transition">Quotation Generator</button>
+                        <button onclick="switchSubTool('receipt')" id="btn-subtool-receipt" class="sub-tool-btn px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 font-medium text-xs cursor-pointer transition">Payment Receipt</button>
+                    </div>
+                </div>
+
+                <!-- INVOICE GENERATOR TOOL -->
+                <div id="subtool-invoice" class="subtool-container space-y-6">
+                    <div class="bg-white text-slate-900 p-6 sm:p-10 rounded-3xl space-y-6 shadow-2xl printable-active" id="invoice-printable-area">
+                        
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                            <div>
+                                <h3 class="font-display font-extrabold text-2xl text-slate-900 flex items-center">
+                                    <i class="fa-solid fa-file-invoice text-brand-600 mr-3"></i> Professional Invoice Generator
+                                </h3>
+                                <p class="text-xs text-slate-500">Calculate totals, taxes, and generate downloadable PDFs</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="resetInvoiceForm()" class="px-3 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition cursor-pointer">Reset</button>
+                                <button onclick="generatePDF('invoice-printable-area', 'Invoice')" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-700 transition cursor-pointer"><i class="fa-solid fa-download mr-1.5"></i>Download PDF</button>
+                            </div>
+                        </div>
+
+                        <!-- Form Inputs -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <h4 class="text-xs font-extrabold text-brand-600 uppercase tracking-wider">Your Business Details (Bill From)</h4>
+                                <input type="text" id="inv-seller-name" placeholder="Business Name" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                                <input type="text" id="inv-seller-address" placeholder="Address" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                                <input type="text" id="inv-seller-phone" placeholder="Phone / WhatsApp" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                            </div>
+
+                            <div class="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <h4 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">Customer Details (Bill To)</h4>
+                                <input type="text" id="inv-cust-name" placeholder="Customer Name" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                                <input type="text" id="inv-cust-address" placeholder="Address" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                                <input type="text" id="inv-cust-phone" placeholder="Customer WhatsApp Phone" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Invoice #</label><input type="text" id="inv-number" value="INV-1001" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs"></div>
+                            <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Invoice Date</label><input type="date" id="inv-date" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs"></div>
+                            <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Tax / GST (%)</label><input type="number" id="inv-tax-rate" value="18" oninput="calculateInvoiceTotals()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs"></div>
+                        </div>
+
+                        <!-- MULTI-ITEM TABLE -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">Invoice Line Items</h4>
+                                <button onclick="addInvoiceItemRow()" class="px-3 py-1.5 rounded-xl bg-brand-50 text-brand-600 text-xs font-bold hover:bg-brand-100 transition cursor-pointer">+ Add Item Row</button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="bg-slate-100 text-slate-700 font-bold text-[10px] uppercase">
+                                        <tr>
+                                            <th class="p-3">Item Description</th>
+                                            <th class="p-3 w-20">Qty</th>
+                                            <th class="p-3 w-28">Unit Price (₹)</th>
+                                            <th class="p-3 w-28">Total (₹)</th>
+                                            <th class="p-3 w-12"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="invoice-items-body" class="divide-y divide-slate-200">
+                                        <tr>
+                                            <td class="p-2"><input type="text" placeholder="Item name or service description" class="w-full bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs"></td>
+                                            <td class="p-2"><input type="number" value="1" oninput="calculateInvoiceTotals()" class="inv-qty w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                                            <td class="p-2"><input type="number" value="0" oninput="calculateInvoiceTotals()" class="inv-price w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                                            <td class="p-2 font-bold text-brand-600 inv-row-total">₹0.00</td>
+                                            <td class="p-2 text-center"><button onclick="removeInvoiceItemRow(this)" class="text-rose-500 hover:text-rose-700 cursor-pointer"><i class="fa-solid fa-trash"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Totals Section -->
+                        <div class="flex justify-end pt-4 border-t border-slate-200">
+                            <div class="w-full sm:w-72 bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs">
+                                <div class="flex justify-between"><span>Subtotal:</span><span id="inv-subtotal" class="font-bold">₹0.00</span></div>
+                                <div class="flex justify-between"><span>GST / Tax:</span><span id="inv-tax" class="font-bold">₹0.00</span></div>
+                                <div class="flex justify-between text-sm font-extrabold text-slate-900 pt-2 border-t border-slate-200"><span>Grand Total:</span><span id="inv-grand-total" class="text-brand-600">₹0.00</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- GRN GENERATOR TOOL -->
+                <div id="subtool-grn" class="subtool-container hidden space-y-6">
+                    <div class="bg-white text-slate-900 p-6 sm:p-10 rounded-3xl space-y-6 shadow-2xl printable-active" id="grn-printable-area">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                            <div>
+                                <h3 class="font-display font-extrabold text-2xl text-slate-900 flex items-center">
+                                    <i class="fa-solid fa-boxes-packing text-emerald-600 mr-3"></i> Goods Receipt Note (GRN) Generator
+                                </h3>
+                                <p class="text-xs text-slate-500">Record incoming supplier shipments with batch verification</p>
+                            </div>
+                            <button onclick="generatePDF('grn-printable-area', 'GRN')" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 transition cursor-pointer">Download GRN PDF</button>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <h4 class="text-xs font-bold text-slate-700 uppercase">Supplier Details</h4>
+                                <input type="text" placeholder="Supplier Company Name" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                                <input type="text" placeholder="Purchase Order PO #" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <h4 class="text-xs font-bold text-slate-700 uppercase">Receiving Warehouse</h4>
+                                <input type="text" placeholder="Warehouse Location / Company" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                                <input type="text" placeholder="Delivery Vehicle #" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xs font-bold text-slate-700 uppercase">Received Goods SKU Items</h4>
+                                <button onclick="addGrnItemRow()" class="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-bold hover:bg-emerald-100 transition cursor-pointer">+ Add Received SKU</button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="bg-slate-100 text-slate-700 font-bold text-[10px] uppercase">
+                                        <tr>
+                                            <th class="p-2.5">SKU / Item Description</th>
+                                            <th class="p-2.5 w-24">Ordered Qty</th>
+                                            <th class="p-2.5 w-24">Received Qty</th>
+                                            <th class="p-2.5 w-32">Batch / QC Status</th>
+                                            <th class="p-2.5 w-12"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="grn-items-body" class="divide-y divide-slate-200">
+                                        <tr>
+                                            <td class="p-2"><input type="text" placeholder="Item name or SKU code" class="w-full bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs"></td>
+                                            <td class="p-2"><input type="number" value="10" class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                                            <td class="p-2"><input type="number" value="10" class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                                            <td class="p-2"><input type="text" placeholder="Batch # / Passed" class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                                            <td class="p-2 text-center"><button onclick="removeGrnItemRow(this)" class="text-rose-500 hover:text-rose-700 cursor-pointer"><i class="fa-solid fa-trash"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- QUOTATION GENERATOR TOOL -->
+                <div id="subtool-quote" class="subtool-container hidden space-y-6">
+                    <div class="bg-white text-slate-900 p-6 sm:p-10 rounded-3xl space-y-6 shadow-2xl printable-active" id="quote-printable-area">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                            <div>
+                                <h3 class="font-display font-extrabold text-2xl text-slate-900 flex items-center">
+                                    <i class="fa-solid fa-calculator text-brand-600 mr-3"></i> Client Quotation Generator
+                                </h3>
+                                <p class="text-xs text-slate-500">Create clean cost estimations for your prospective clients</p>
+                            </div>
+                            <button onclick="generatePDF('quote-printable-area', 'Quotation')" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-700 transition cursor-pointer">Download Quote PDF</button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Company Name" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs">
+                            <input type="text" placeholder="Client Name" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAYMENT RECEIPT GENERATOR TOOL -->
+                <div id="subtool-receipt" class="subtool-container hidden space-y-6">
+                    <div class="bg-white text-slate-900 p-6 sm:p-10 rounded-3xl space-y-6 shadow-2xl printable-active" id="receipt-printable-area">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                            <div>
+                                <h3 class="font-display font-extrabold text-2xl text-slate-900 flex items-center">
+                                    <i class="fa-solid fa-receipt text-emerald-600 mr-3"></i> Payment Receipt Generator
+                                </h3>
+                                <p class="text-xs text-slate-500">Issue instant payment proof to your customers</p>
+                            </div>
+                            <button onclick="generatePDF('receipt-printable-area', 'Payment_Receipt')" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 transition cursor-pointer">Download Receipt PDF</button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Received From (Customer Name)" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs">
+                            <input type="text" placeholder="Amount Received (₹)" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs">
+                            <input type="text" placeholder="Payment Mode (UPI/Bank/Cash)" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs">
+                            <input type="date" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- CONTACT TAB -->
+        <section id="tab-contact" class="tab-content hidden py-16">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
+                <div class="space-y-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-400">Direct Connect</span>
+                    <h2 class="font-display font-black text-3xl sm:text-4xl text-white">Get In Touch With Kvortex</h2>
+                    <p class="text-sm text-slate-400">Direct support for websites, dashboards, and automated business setups.</p>
+                </div>
+
+                <div class="glass-card p-8 sm:p-10 rounded-3xl space-y-6 shadow-2xl border border-white/10">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-3xl mx-auto">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-2xl text-white">Kvortex Automations</h3>
+                        <p class="text-sm font-bold text-brand-400 mt-1">kvotex.tech@gmail.com</p>
+                        <p class="text-sm font-bold text-emerald-400 mt-1">WhatsApp: +91 9480931248</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 pt-2">
+                        <a href="https://wa.me/919480931248?text=Hi%20Kvortex!%20I'd%20like%20to%20discuss%20a%20project." 
+                           target="_blank" 
+                           class="px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Chat on WhatsApp
+                        </a>
+                        <button onclick="openModal('project-inquiry')" class="px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition cursor-pointer">
+                            Send Email Inquiry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- PROJECT INQUIRY MODAL -->
+    <div id="kvora-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card w-full max-w-lg rounded-3xl border border-white/10 p-6 sm:p-8 space-y-6 relative shadow-2xl bg-[#0b0f19]">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div id="modal-content" class="space-y-4 text-left">
+                <!-- Dynamically Rendered -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#080b12] py-12 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-xl bg-brand-600 text-white font-black flex items-center justify-center text-sm">K</div>
+                    <span class="font-display font-black text-white text-lg">Kvortex</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed">"Websites from ₹799 • Dashboards from ₹1999"</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-[10px] tracking-widest mb-3">Primary Solutions</h4>
+                <ul class="space-y-2">
+                    <li><a href="#websites" onclick="navigateTo('websites'); return false;" class="hover:text-brand-400 transition">Restaurant & Cafe Websites</a></li>
+                    <li><a href="#websites" onclick="navigateTo('websites'); return false;" class="hover:text-brand-400 transition">Corporate Business Portals</a></li>
+                    <li><a href="#websites" onclick="navigateTo('websites'); return false;" class="hover:text-brand-400 transition">Personal Brand Showcases</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-[10px] tracking-widest mb-3">Free Utilities</h4>
+                <ul class="space-y-2">
+                    <li><a href="#tools" onclick="navigateTo('tools'); switchSubTool('invoice'); return false;" class="hover:text-brand-400 transition">Invoice Generator</a></li>
+                    <li><a href="#tools" onclick="navigateTo('tools'); switchSubTool('grn'); return false;" class="hover:text-brand-400 transition">GRN Generator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-[10px] tracking-widest mb-3">Direct Contact</h4>
+                <p class="text-slate-200 font-bold">kvotex.tech@gmail.com</p>
+                <p class="text-emerald-400 font-bold mt-1">WhatsApp: +91 9480931248</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-slate-400">
+            <p>© 2026 Kvortex. All rights reserved.</p>
+            <p class="mt-2 sm:mt-0 font-bold text-brand-400">Affordable to start. Powerful enough to grow.</p>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        // Navigation Switcher
+        function navigateTo(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-brand-500');
+            });
+
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) activeBtn.classList.add('text-brand-500');
+
+            const drawer = document.getElementById('mobile-drawer');
+            if (drawer && !drawer.classList.contains('-translate-x-full')) {
+                drawer.classList.add('-translate-x-full');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Sub-Tool Switcher
+        function switchSubTool(toolName) {
+            document.querySelectorAll('.subtool-container').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('subtool-' + toolName);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.sub-tool-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'font-bold');
+                btn.classList.add('bg-white/5', 'border', 'border-white/10', 'text-slate-300', 'font-medium');
+            });
+
+            const activeBtn = document.getElementById('btn-subtool-' + toolName);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white/5', 'border', 'border-white/10', 'text-slate-300', 'font-medium');
+                activeBtn.classList.add('bg-brand-600', 'text-white', 'font-bold');
+            }
+        }
+
+        // ESTIMATOR CALCULATOR LOGIC
+        function updateEstimatorTotal() {
+            let total = 0;
+            if (document.getElementById('calc-website')?.checked) total += 799;
+            if (document.getElementById('calc-dashboard')?.checked) total += 1999;
+            if (document.getElementById('calc-domain')?.checked) total += 499;
+            if (document.getElementById('calc-whatsapp')?.checked) total += 299;
+
+            document.getElementById('estimator-grand-total').innerText = '₹' + total;
+            
+            const waBtn = document.getElementById('estimator-wa-btn');
+            if (waBtn) {
+                waBtn.href = `https://wa.me/919480931248?text=Hi%20Kvortex!%20I'd%20like%20to%20order%20the%20custom%20setup%20estimated%20at%20%E2%82%B9${total}`;
+            }
+        }
+
+        // MULTI-ITEM INVOICE CALCULATOR & ROW MANAGEMENT
+        function calculateInvoiceTotals() {
+            let subtotal = 0;
+            const rows = document.querySelectorAll('#invoice-items-body tr');
+            rows.forEach(row => {
+                const qtyInput = row.querySelector('.inv-qty');
+                const priceInput = row.querySelector('.inv-price');
+                const rowTotalEl = row.querySelector('.inv-row-total');
+                if (qtyInput && priceInput && rowTotalEl) {
+                    const qty = parseFloat(qtyInput.value) || 0;
+                    const price = parseFloat(priceInput.value) || 0;
+                    const total = qty * price;
+                    rowTotalEl.innerText = '₹' + total.toLocaleString('en-IN', {minimumFractionDigits: 2});
+                    subtotal += total;
+                }
+            });
+
+            const taxRate = parseFloat(document.getElementById('inv-tax-rate')?.value) || 0;
+            const taxAmount = (subtotal * taxRate) / 100;
+            const grandTotal = subtotal + taxAmount;
+
+            document.getElementById('inv-subtotal').innerText = '₹' + subtotal.toLocaleString('en-IN', {minimumFractionDigits: 2});
+            document.getElementById('inv-tax').innerText = '₹' + taxAmount.toLocaleString('en-IN', {minimumFractionDigits: 2});
+            document.getElementById('inv-grand-total').innerText = '₹' + grandTotal.toLocaleString('en-IN', {minimumFractionDigits: 2});
+        }
+
+        function addInvoiceItemRow() {
+            const tbody = document.getElementById('invoice-items-body');
+            if (!tbody) return;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="p-2"><input type="text" placeholder="Item name or service description" class="w-full bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs"></td>
+                <td class="p-2"><input type="number" value="1" oninput="calculateInvoiceTotals()" class="inv-qty w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                <td class="p-2"><input type="number" value="0" oninput="calculateInvoiceTotals()" class="inv-price w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                <td class="p-2 font-bold text-brand-600 inv-row-total">₹0.00</td>
+                <td class="p-2 text-center"><button onclick="removeInvoiceItemRow(this)" class="text-rose-500 hover:text-rose-700 cursor-pointer"><i class="fa-solid fa-trash"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+            calculateInvoiceTotals();
+        }
+
+        function removeInvoiceItemRow(btn) {
+            const tr = btn.closest('tr');
+            if (tr) {
+                tr.remove();
+                calculateInvoiceTotals();
+            }
+        }
+
+        // MULTI-ITEM GRN ROW MANAGEMENT
+        function addGrnItemRow() {
+            const tbody = document.getElementById('grn-items-body');
+            if (!tbody) return;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="p-2"><input type="text" placeholder="Item name or SKU code" class="w-full bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs"></td>
+                <td class="p-2"><input type="number" value="1" class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                <td class="p-2"><input type="number" value="1" class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                <td class="p-2"><input type="text" placeholder="Batch # / Passed" class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs"></td>
+                <td class="p-2 text-center"><button onclick="removeGrnItemRow(this)" class="text-rose-500 hover:text-rose-700 cursor-pointer"><i class="fa-solid fa-trash"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function removeGrnItemRow(btn) {
+            const tr = btn.closest('tr');
+            if (tr) tr.remove();
+        }
+
+        function resetInvoiceForm() {
+            document.querySelectorAll('#subtool-invoice input:not([type="number"])').forEach(i => i.value = '');
+            document.getElementById('inv-tax-rate').value = '18';
+            calculateInvoiceTotals();
+            showToast('Invoice form reset', 'info');
+        }
+
+        // PDF GENERATION UTILITY
+        async function generatePDF(elementId, filenamePrefix) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            showToast('Generating PDF Document...', 'info');
+            try {
+                const canvas = await html2canvas(element, { scale: 2, backgroundColor: '#ffffff' });
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgWidth = 210;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save(`${filenamePrefix}_Kvortex.pdf`);
+                showToast('PDF Document Downloaded!', 'success');
+            } catch (err) {
+                showToast('Error generating PDF', 'error');
+            }
+        }
+
+        // MODAL & MAILTO DISPATCH TO kvotex.tech@gmail.com
+        function openModal(type) {
+            const modal = document.getElementById('kvora-modal');
+            const content = document.getElementById('modal-content');
+            if (!modal || !content) return;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            content.innerHTML = `
+                <h3 class="font-display font-bold text-xl text-white">Send Requirements to Kvortex</h3>
+                <p class="text-xs text-slate-400">Fill your requirement details below to send a mail to <span class="font-bold text-white">kvotex.tech@gmail.com</span>.</p>
+                <form onsubmit="dispatchRequirementMail(event)" class="space-y-3 pt-2">
+                    <input type="text" id="req-name" required placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500">
+                    <input type="text" id="req-company" required placeholder="Business / Restaurant / Brand Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500">
+                    <input type="text" id="req-phone" required placeholder="WhatsApp Phone Number" class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500">
+                    <select id="req-service" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white">
+                        <option>Professional Website (from ₹799)</option>
+                        <option>Restaurant & Digital Menu Website (from ₹799)</option>
+                        <option>Personal & Creator Social Showcase Site (from ₹799)</option>
+                        <option>Custom Business Dashboard (from ₹1999)</option>
+                        <option>Workflow Automation System</option>
+                    </select>
+                    <textarea id="req-desc" required rows="3" placeholder="Describe what you want us to build for you..." class="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-xs text-white placeholder-slate-500"></textarea>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-500 transition cursor-pointer">Open Mail Client & Send</button>
+                </form>
+            `;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('kvora-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // DIRECT MAILTO LOGIC FOR REAL MAIL SUBMISSION
+        function dispatchRequirementMail(e) {
+            e.preventDefault();
+            const name = document.getElementById('req-name')?.value || '';
+            const company = document.getElementById('req-company')?.value || '';
+            const phone = document.getElementById('req-phone')?.value || '';
+            const service = document.getElementById('req-service')?.value || '';
+            const desc = document.getElementById('req-desc')?.value || '';
+
+            const subject = encodeURIComponent(`New Project Inquiry from ${name} - ${company}`);
+            const body = encodeURIComponent(
+                `Hello Kvortex Team,\n\nI would like to request a consultation for my business.\n\n` +
+                `Name: ${name}\n` +
+                `Business/Brand Name: ${company}\n` +
+                `WhatsApp/Phone: ${phone}\n` +
+                `Selected Service: ${service}\n\n` +
+                `Requirement Details:\n${desc}\n\n` +
+                `Regards,\n${name}`
+            );
+
+            window.location.href = `mailto:kvotex.tech@gmail.com?subject=${subject}&body=${body}`;
+            showToast('Opening Mail Client to send requirement...', 'success');
+            closeModal();
+        }
+
+        // Toast System
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = `glass-card border border-white/10 px-4 py-3 rounded-2xl text-xs font-semibold shadow-2xl text-white flex items-center space-x-2 pointer-events-auto transition-all`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-info text-brand-400"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Mobile Menu
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('mobile-drawer')?.classList.remove('-translate-x-full');
+        });
+        document.getElementById('mobile-close-btn')?.addEventListener('click', () => {
+            document.getElementById('mobile-drawer')?.classList.add('-translate-x-full');
+        });
+
+        // Initialize On Load
+        window.onload = function() {
+            calculateInvoiceTotals();
+        };
+    </script>
+</body>
+</html>
